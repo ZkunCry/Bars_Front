@@ -2,25 +2,109 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --foreground-secondary: #272727;
+  --background-calc: #ececee;
+}
+.burger-btn {
+  /* display: none; */
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+}
+.burger-btn span {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: gray;
+  left: 5px;
+  transition: opacity 0.2s, transform 0.5s, background-color 0.5s;
+}
+.burger-btn span:nth-child(1) {
+  transform: translateY(-10px);
+}
+.burger-btn span:nth-child(3) {
+  transform: translateY(10px);
+}
+.burger-btn.open span {
+  background-color: white;
+}
+.burger-btn.open span:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+.burger-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger-btn.open span:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
 }
 
 @theme inline {
+  --animate-fade-in: fade-in 0.7s ease-in-out forwards;
+  --animate-fade-out: fade-out 1s ease-in-out forwards;
+  --animate-fade-in-row: fade-in-row 0.4s ease-in-out forwards;
+  --text-test: clamp(2rem, 4.5vw+0.5rem, 4rem);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+  --color-secondary: var(--foreground-secondary);
+  --color-calculator: var(--background-calc);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in-row {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+      border-bottom: 1px solid transparent;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: #e4e5e8; /* финальный цвет: #E4E5E8 */
+      border-bottom: 1px solid #e4e5e8;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
   }
 }
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #ededed;
+  }
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter);
+  font-size: 16px;
+}
+::view-transition-old(select-dropdown) {
+  animation: fade-out 0.2s ease-in-out;
+}
+
+::view-transition-new(select-dropdown) {
+  animation: fade-in 0.2s ease-in-out;
 }
