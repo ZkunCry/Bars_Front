@@ -63,7 +63,7 @@ export const ContactForm = () => {
         submitted: true,
         error: "",
       });
-    } catch (err: any) {
+    } catch (err) {
       setFormState((prev) => ({
         ...prev,
         loading: false,

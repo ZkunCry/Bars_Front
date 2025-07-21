@@ -1,5 +1,6 @@
 import { ProductCard } from "@/src/components/features";
-
+export const revalidate = 60;
+export const dynamicParams = true;
 export async function generateStaticParams() {
   try {
     const controller = new AbortController();

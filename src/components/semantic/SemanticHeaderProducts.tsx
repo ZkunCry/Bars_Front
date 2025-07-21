@@ -1,8 +1,6 @@
 import React from "react";
 import { Header } from "../ui";
-import { Nav } from "@/src/components/semantic";
-import { HeaderMenu, MenuLinks } from "../features";
-import Link from "next/link";
+import { HeaderMenu } from "../features";
 import { Container } from "../ui";
 export const SemanticHeaderProducts = () => {
   return (

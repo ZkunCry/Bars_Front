@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, type ChangeEvent } from "react";
+import React, { useRef, useState } from "react";
 import { useClickOutside } from "@/src/hooks/useClickOutside";
 import { SelectProps, type Option } from "@/src/types/select";
 import { cn } from "@/src/lib/utils";

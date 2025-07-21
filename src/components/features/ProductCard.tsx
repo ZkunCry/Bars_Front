@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ProductCardProps } from "@/src/types/products";
-export const ProductCard = ({ title, price, image, id }: ProductCardProps) => {
+export const ProductCard = ({ title, price, image }: ProductCardProps) => {
   console.log("http://localhost:1337/" + image);
   return (
     <div className="w-full max-w-[547px] min-h-[400px] bg-gray-100 p-4 rounded-lg shadow-sm animate-fade-in ">

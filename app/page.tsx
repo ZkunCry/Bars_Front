@@ -1,13 +1,7 @@
 import Image from "next/image";
 import { SemanticHeader } from "@/src/components/semantic";
 import { Container } from "@/src/components/ui";
-import {
-  CustomSelect,
-  LinkBtn,
-  CustomButton,
-  ContactForm,
-  Calculator,
-} from "@/src/components/features";
+import { LinkBtn, ContactForm, Calculator } from "@/src/components/features";
 import Window from "@/public/window.png";
 import WindowRotate from "@/public/window-rotate.png";
 import Man from "@/public/man.png";
