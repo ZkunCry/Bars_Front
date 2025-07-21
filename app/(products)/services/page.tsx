@@ -1,16 +1,17 @@
 import { Container } from "@/src/components/ui";
-import { PricingTable } from "@/src/components/features";
+import { BlockContactForm, PricingTable } from "@/src/components/features";
 
 export default async function Page() {
   const services = await fetch(
-    `$${process.env.NEXT_PUBLIC_STRAPI_API_URL}/services`
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/services`
   )
     .then((res) => res.json())
     .catch(() => null);
+
   const hasServices = Array.isArray(services) && services.length > 0;
 
   return (
-    <section className="mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
+    <section className="flex flex-col mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
       <Container>
         <div className="flex flex-col mb-[0.75rem]">
           <h1
@@ -43,6 +44,9 @@ export default async function Page() {
             К сожалению, услуги пока недоступны.
           </p>
         )}
+        <div className="flex items-center justify-center my-[100px]">
+          <BlockContactForm />
+        </div>
       </Container>
     </section>
   );

@@ -10,3 +10,4 @@ export { ContactForm } from "@/src/components/features/ContactFrom";
 export { HeaderMenu } from "./HeaderMenu";
 export { Calculator } from "./Calculator";
 export { MapFooter } from "./MapFooter";
+export { BlockContactForm } from "./BlockContactForm";

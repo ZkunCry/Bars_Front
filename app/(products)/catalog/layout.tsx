@@ -1,5 +1,5 @@
 import { Container } from "@/src/components/ui";
-import { Sidebar } from "@/src/components/features";
+import { BlockContactForm, Sidebar } from "@/src/components/features";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <section className="mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
@@ -13,13 +13,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </h1>
         </div>
         <div
-          className="flex flex-col md:flex-row gap-4 p-4 animate-fade-in opacity-0"
+          className="flex flex-col items-start md:flex-row gap-4 p-4 animate-fade-in opacity-0"
           style={{ animationDelay: "700ms" }}
         >
           <Sidebar />
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2  gap-6 ">
             {children}
           </div>
+        </div>
+        <div className="flex items-center justify-center my-[100px]">
+          <BlockContactForm />
         </div>
       </Container>
     </section>

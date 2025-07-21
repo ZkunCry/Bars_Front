@@ -1,4 +1,5 @@
 import { SemanticHeaderProducts } from "@/src/components/semantic";
+
 export default function ProductsLayout({
   children,
 }: {
