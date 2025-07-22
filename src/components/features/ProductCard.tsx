@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { ProductCardProps } from "@/src/types/products";
 export const ProductCard = ({ title, price, image }: ProductCardProps) => {
-  console.log("http://localhost:1337/" + image);
   return (
     <div className="w-full max-w-[547px] min-h-[400px] bg-gray-100 p-4 rounded-lg shadow-sm animate-fade-in ">
       <Image
         width={520}
         height={276}
-        src={"http://localhost:1337" + image}
+        src={process.env.NEXT_PUBLIC_STRAPI_API_URL + image}
         alt={title}
         className="w-full h-full max-h-[276px] object-cover rounded-[0.5rem]"
       />
