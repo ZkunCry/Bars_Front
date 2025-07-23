@@ -39,7 +39,11 @@ export const ContactForm = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BOT_API_URL}/application`,
+        `${
+          process.env.NODE_ENV === "production"
+            ? process.env.NEXT_PUBLIC_BOT_API_URL_PROD
+            : process.env.NEXT_PUBLIC_BOT_API_URL_DEV
+        }/application`,
         {
           method: "POST",
           headers: {

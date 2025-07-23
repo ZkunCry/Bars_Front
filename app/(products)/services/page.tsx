@@ -3,7 +3,11 @@ import { BlockContactForm, PricingTable } from "@/src/components/features";
 
 export default async function Page() {
   const services = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/services`
+    `${
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_STRAPI_API_PROD
+        : process.env.NEXT_STRAPI_API_DEV
+    }/services`
   )
     .then((res) => res.json())
     .catch(() => null);

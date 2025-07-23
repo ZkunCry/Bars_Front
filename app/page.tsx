@@ -5,8 +5,9 @@ import { LinkBtn, ContactForm, Calculator } from "@/src/components/features";
 import Window from "@/public/window.png";
 import WindowRotate from "@/public/window-rotate.png";
 import Man from "@/public/man.png";
+
 export default function Home() {
-  console.log("test");
+  console.log("SERVER ENV:", process.env.NEXT_STRAPI_API_DEV);
   return (
     <main>
       <section className="flex flex-col md:min-h-[795px] min-h-dvh bg-[url('/bg.png')] bg-cover bg-center relative pt-[97px] ">

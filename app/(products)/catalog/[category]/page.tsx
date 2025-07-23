@@ -7,7 +7,11 @@ export async function generateStaticParams() {
     const timeoutId = setTimeout(() => controller.abort(), 3000);
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/categories`,
+      `${
+        process.env.NODE_ENV === "production"
+          ? process.env.NEXT_STRAPI_API_PROD
+          : process.env.NEXT_STRAPI_API_DEV
+      }/categories`,
       {
         signal: controller.signal,
       }
@@ -43,7 +47,11 @@ export default async function CategoryPage({
 
     if (category === "all") {
       const allCardsRes = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/cards`,
+        `${
+          process.env.NODE_ENV === "production"
+            ? process.env.NEXT_STRAPI_API_PROD
+            : process.env.NEXT_STRAPI_API_DEV
+        }/cards`,
         {
           signal: controller.signal,
         }
@@ -57,7 +65,11 @@ export default async function CategoryPage({
       cards = await allCardsRes.json();
     } else {
       const categoryRes = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/categories?name=${category}`,
+        `${
+          process.env.NODE_ENV === "production"
+            ? process.env.NEXT_STRAPI_API_PROD
+            : process.env.NEXT_STRAPI_API_DEV
+        }/categories?name=${category}`,
         { signal: controller.signal }
       );
       clearTimeout(timeoutId);

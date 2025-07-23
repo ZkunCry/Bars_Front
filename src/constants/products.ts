@@ -47,7 +47,7 @@ export const categories = [
   },
   {
     value: "Перегородки",
-    href: "/bars",
+    href: "/partitions",
   },
   { value: "Порталы", href: "/portals" },
 ];

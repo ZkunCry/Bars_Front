@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Барс",
+  title: "Окна Барс — Пластиковые окна и остекление в Сургуте",
   description:
     "Компания «Барс» — это команда профессионалов, специализирующаяся на производстве и установке оконных изделий из ПВХ и амалиена.Мы не просто устанавливаем окна — мы создаём комфорт, тепло и тишину в каждом доме.",
   keywords: [
@@ -20,14 +20,18 @@ export const metadata: Metadata = {
     "Окна ПВХ Сургут",
     "Барс Сургут",
   ],
+  openGraph: {
+    title: "Окна Барс — Пластиковые окна в Сургуте",
+    description:
+      "Производство и установка окон ПВХ и амалиена. Бесплатный замер. Гарантия качества. Компания «Барс», Сургут.",
+    url: "https://bars-surgut.ru",
+    siteName: "Барс",
+    locale: "ru_RU",
+    type: "website",
+  },
   robots: {
     index: true,
     follow: true,
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
   },
 };
 
