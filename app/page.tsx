@@ -7,7 +7,14 @@ import WindowRotate from "@/public/window-rotate.png";
 import Man from "@/public/man.png";
 
 export default function Home() {
-  console.log("SERVER ENV:", process.env.NEXT_STRAPI_API_DEV);
+  console.log(
+    "SERVER ENV:",
+    `${
+      process.env.NODE_ENV === "production"
+        ? process.env.NEXT_STRAPI_API_PROD
+        : process.env.NEXT_STRAPI_API_DEV
+    }/categories`
+  );
   return (
     <main>
       <section className="flex flex-col md:min-h-[795px] min-h-dvh bg-[url('/bg.png')] bg-cover bg-center relative pt-[97px] ">

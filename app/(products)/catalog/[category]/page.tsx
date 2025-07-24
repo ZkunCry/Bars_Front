@@ -1,27 +1,53 @@
 import { ProductCard } from "@/src/components/features";
+import { STRAPI_API } from "@/src/constants/api";
+import { logger } from "@/src/lib/logger";
 export const revalidate = 60;
 export const dynamicParams = true;
 export async function generateStaticParams() {
   try {
+    const url = `${STRAPI_API}/categories`;
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+      logger.warn({
+        event: "page_catalog",
+        info: {
+          url: url,
+          message: "[generateStaticParams] Запрос прерван по таймауту (3 сек)",
+        },
+      });
+    }, 3000);
+    logger.info({
+      event: "page_catalog",
+      info: {
+        url: url,
+        message: "Проверка URL",
+      },
+    });
 
-    const res = await fetch(
-      `${
-        process.env.NODE_ENV === "production"
-          ? process.env.NEXT_STRAPI_API_PROD
-          : process.env.NEXT_STRAPI_API_DEV
-      }/categories`,
-      {
-        signal: controller.signal,
-      }
-    );
+    const res = await fetch(url, {
+      signal: controller.signal,
+    });
+
     clearTimeout(timeoutId);
 
+    logger.info({
+      event: "page_catalog",
+      info: {
+        url: url,
+        message: `[generateStaticParams] Ответ от API: статус ${res.status}`,
+      },
+    });
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const categories = await res.json();
-
+    logger.info({
+      event: "page_catalog",
+      info: {
+        url: url,
+        message: `[generateStaticParams] Получено категорий: ${categories.length}`,
+      },
+    });
     return [
       ...categories.map((cat) => ({
         category: cat.name.toLowerCase(),
@@ -30,6 +56,12 @@ export async function generateStaticParams() {
     ];
   } catch (error) {
     console.error("Failed to fetch categories for static generation:", error);
+    logger.error({
+      event: "page_catalog",
+      info: {
+        message: `[generateStaticParams] Ошибка при загрузке категорий: ${error}`,
+      },
+    });
     return [];
   }
 }
@@ -44,18 +76,17 @@ export default async function CategoryPage({
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
-
+    logger.info({
+      event: "page_catalog",
+      info: {
+        url: `${STRAPI_API}/categories?name=${category}`,
+        message: `[CategoryPage] Запрос страницы категории: ${category}`,
+      },
+    });
     if (category === "all") {
-      const allCardsRes = await fetch(
-        `${
-          process.env.NODE_ENV === "production"
-            ? process.env.NEXT_STRAPI_API_PROD
-            : process.env.NEXT_STRAPI_API_DEV
-        }/cards`,
-        {
-          signal: controller.signal,
-        }
-      );
+      const allCardsRes = await fetch(`${STRAPI_API}/cards`, {
+        signal: controller.signal,
+      });
       clearTimeout(timeoutId);
 
       if (!allCardsRes.ok) {
@@ -65,11 +96,7 @@ export default async function CategoryPage({
       cards = await allCardsRes.json();
     } else {
       const categoryRes = await fetch(
-        `${
-          process.env.NODE_ENV === "production"
-            ? process.env.NEXT_STRAPI_API_PROD
-            : process.env.NEXT_STRAPI_API_DEV
-        }/categories?name=${category}`,
+        `${STRAPI_API}/categories?name=${category}`,
         { signal: controller.signal }
       );
       clearTimeout(timeoutId);
@@ -79,7 +106,15 @@ export default async function CategoryPage({
       }
 
       const categories = await categoryRes.json();
-
+      logger.info({
+        event: "page_catalog",
+        info: {
+          url: `${STRAPI_API}/categories?name=${category}`,
+          message: `[CategoryPage] Категория найдена: ${JSON.stringify(
+            categories
+          )}`,
+        },
+      });
       if (categories.length > 0) {
         cards = categories[0].cards || [];
       } else {
@@ -115,14 +150,20 @@ export default async function CategoryPage({
       </p>
     );
   }
-
+  logger.info({
+    event: "page_catalog",
+    info: {
+      url: `${STRAPI_API}/categories?name=${category}`,
+      message: `[CategoryPage] Товары: ${JSON.stringify(cards)}`,
+    },
+  });
   return cards.map((card, index) => (
     <ProductCard
       key={index}
       id={card.id}
       title={card.title}
       price={card.price}
-      image={card.image.url}
+      image={card.image ? card.image.url : "/placeholder.png"}
     />
   ));
 }

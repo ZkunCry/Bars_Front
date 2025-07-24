@@ -1,16 +1,40 @@
 import { Container } from "@/src/components/ui";
 import { BlockContactForm, PricingTable } from "@/src/components/features";
-
+import { STRAPI_API } from "@/src/constants/api";
+import { logger } from "@/src/lib/logger";
 export default async function Page() {
-  const services = await fetch(
-    `${
-      process.env.NODE_ENV === "production"
-        ? process.env.NEXT_STRAPI_API_PROD
-        : process.env.NEXT_STRAPI_API_DEV
-    }/services`
-  )
-    .then((res) => res.json())
-    .catch(() => null);
+  const url = `${STRAPI_API}/services`;
+  logger.info({
+    event: "page_services",
+    info: {
+      url: url,
+      message: "Проверка URL",
+    },
+  });
+  const services = await fetch(url)
+    .then((res) => {
+      const result = res.json();
+      logger.info({
+        event: "page_services",
+        info: {
+          url: url,
+          message: `Ответ от API: статус ${res.status}, ответ ${JSON.stringify(
+            result
+          )}`,
+        },
+      });
+      return result;
+    })
+    .catch(() => {
+      logger.error({
+        event: "page_services",
+        info: {
+          url: url,
+          message: "Ошибка запроса к API",
+        },
+      });
+      return null;
+    });
 
   const hasServices = Array.isArray(services) && services.length > 0;
 
