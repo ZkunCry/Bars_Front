@@ -1,43 +1,33 @@
 import { Container } from "@/src/components/ui";
 import { BlockContactForm, PricingTable } from "@/src/components/features";
-import { STRAPI_API } from "@/src/constants/api";
 import { logger } from "@/src/lib/logger";
+import { StrapiService } from "@/src/services/StrapiService";
+
+export const revalidate = 60;
 export default async function Page() {
-  const url = `${STRAPI_API}/services`;
-  logger.info({
-    event: "page_services",
-    info: {
-      url: url,
-      message: "Проверка URL",
-    },
-  });
-  const services = await fetch(url)
-    .then((res) => {
-      const result = res.json();
-      logger.info({
-        event: "page_services",
-        info: {
-          url: url,
-          message: `Ответ от API: статус ${res.status}, ответ ${JSON.stringify(
-            result
-          )}`,
-        },
-      });
-      return result;
-    })
-    .catch(() => {
-      logger.error({
-        event: "page_services",
-        info: {
-          url: url,
-          message: "Ошибка запроса к API",
-        },
-      });
-      return null;
+  let services = null;
+
+  try {
+    services = await StrapiService.getServices();
+    logger.info({
+      event: "page_services_success",
+      info: {
+        count: services?.length || 0,
+        message: "Услуги успешно получены из Strapi",
+      },
     });
+  } catch (error) {
+    // Обработка ошибок
+    console.error("Services page error:", error);
+    logger.error({
+      event: "page_services_error",
+      info: {
+        message: `Ошибка при получении услуг: ${error.message}`,
+      },
+    });
+  }
 
   const hasServices = Array.isArray(services) && services.length > 0;
-
   return (
     <section className="flex flex-col mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
       <Container>

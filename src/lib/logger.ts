@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-const logFilePath = "./storage/logs.txt";
+const logFilePath = "./logs/logs.txt";
 
-// Убедимся, что папка storage существует
 if (!fs.existsSync(path.dirname(logFilePath))) {
   fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
 }
@@ -12,13 +11,12 @@ function formatDate() {
   return new Date().toISOString();
 }
 
-// Функция для красивого форматирования аргументов
 function formatArgs(args: unknown[]) {
   return args
     .map((arg) => {
       if (typeof arg === "string") return arg;
       try {
-        return JSON.stringify(arg, null, 2); // отступ 2 пробела для читаемости
+        return JSON.stringify(arg, null, 2);
       } catch {
         return String(arg);
       }

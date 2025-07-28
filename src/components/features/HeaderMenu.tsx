@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Nav } from "../semantic";
 import { MenuLinks } from "./MenuLinks";
 import Link from "next/link";
+import Image from "next/image";
+import type { HeaderMenuProps } from "@/src/types/header-menu";
 
 export const HeaderMenu = ({
   colorLinks,
@@ -11,7 +13,8 @@ export const HeaderMenu = ({
   logoColor,
   telColorText,
   navBorder,
-}) => {
+  logo,
+}: HeaderMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     if (isOpen) {
@@ -26,7 +29,9 @@ export const HeaderMenu = ({
   return (
     <>
       <div className="flex justify-between items-center text-white gap-4 py-[0.75rem]">
-        <div className={`logo text-xl font-bold ${logoColor}`}>Лого</div>
+        <div className={`logo text-xl font-bold ${logoColor}`}>
+          <Image src={logo} alt="Барс лого" />
+        </div>
 
         <button
           className={`md:hidden block burger-btn cursor-pointer z-40 ${

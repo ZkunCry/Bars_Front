@@ -1,128 +1,80 @@
+// src/app/catalog/[category]/page.tsx
 import { ProductCard } from "@/src/components/features";
-import { STRAPI_API } from "@/src/constants/api";
 import { logger } from "@/src/lib/logger";
+import { StrapiService } from "@/src/services/StrapiService";
+
 export const revalidate = 60;
 export const dynamicParams = true;
-export async function generateStaticParams() {
-  try {
-    const url = `${STRAPI_API}/categories`;
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => {
-      controller.abort();
-      logger.warn({
-        event: "page_catalog",
-        info: {
-          url: url,
-          message: "[generateStaticParams] Запрос прерван по таймауту (3 сек)",
-        },
-      });
-    }, 3000);
-    logger.info({
-      event: "page_catalog",
-      info: {
-        url: url,
-        message: "Проверка URL",
-      },
-    });
-
-    const res = await fetch(url, {
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeoutId);
-
-    logger.info({
-      event: "page_catalog",
-      info: {
-        url: url,
-        message: `[generateStaticParams] Ответ от API: статус ${res.status}`,
-      },
-    });
-    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-
-    const categories = await res.json();
-    logger.info({
-      event: "page_catalog",
-      info: {
-        url: url,
-        message: `[generateStaticParams] Получено категорий: ${categories.length}`,
-      },
-    });
-    return [
-      ...categories.map((cat) => ({
-        category: cat.name.toLowerCase(),
-      })),
-      { category: "all" },
-    ];
-  } catch (error) {
-    console.error("Failed to fetch categories for static generation:", error);
-    logger.error({
-      event: "page_catalog",
-      info: {
-        message: `[generateStaticParams] Ошибка при загрузке категорий: ${error}`,
-      },
-    });
-    return [];
-  }
-}
 
 export default async function CategoryPage({
   params,
 }: {
   params: { category: string };
 }) {
-  const { category } = await params;
-  let cards = [];
+  const { category } = params;
+
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
     logger.info({
       event: "page_catalog",
       info: {
-        url: `${STRAPI_API}/categories?name=${category}`,
-        message: `[CategoryPage] Запрос страницы категории: ${category}`,
+        category,
+        message: `[CategoryPage] Запрос страницы категории`,
       },
     });
+
+    let cards = [];
+
     if (category === "all") {
-      const allCardsRes = await fetch(`${STRAPI_API}/cards`, {
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-
-      if (!allCardsRes.ok) {
-        throw new Error(`HTTP error! status: ${allCardsRes.status}`);
-      }
-
-      cards = await allCardsRes.json();
+      cards = await StrapiService.getAllCards();
     } else {
-      const categoryRes = await fetch(
-        `${STRAPI_API}/categories?name=${category}`,
-        { signal: controller.signal }
-      );
-      clearTimeout(timeoutId);
+      const categoryData = await StrapiService.getCategoryByName(category);
 
-      if (!categoryRes.ok) {
-        throw new Error(`HTTP error! status: ${categoryRes.status}`);
-      }
-
-      const categories = await categoryRes.json();
-      logger.info({
-        event: "page_catalog",
-        info: {
-          url: `${STRAPI_API}/categories?name=${category}`,
-          message: `[CategoryPage] Категория найдена: ${JSON.stringify(
-            categories
-          )}`,
-        },
-      });
-      if (categories.length > 0) {
-        cards = categories[0].cards || [];
-      } else {
+      if (!categoryData) {
         return <p className="p-4 text-gray-500 italic">Категория не найдена</p>;
       }
+
+      cards = categoryData.cards || [];
     }
+
+    if (cards.length === 0) {
+      return (
+        <p className="p-4 text-gray-500 italic">
+          {category === "all"
+            ? "Товары не найдены"
+            : "Товары для данной категории еще не добавлены"}
+        </p>
+      );
+    }
+
+    logger.info({
+      event: "page_catalog_success",
+      info: {
+        category,
+        cards_count: cards.length,
+        message: `Успешно получены товары`,
+      },
+    });
+
+    return cards.map((card) => (
+      <ProductCard
+        key={card.id}
+        id={card.id}
+        title={card.title}
+        price={card.price}
+        image={card.image?.url || "/placeholder.png"}
+      />
+    ));
   } catch (error) {
-    console.error("Failed to fetch category data:", error);
+    console.error("CategoryPage error:", error);
+
+    logger.error({
+      event: "page_catalog_error",
+      info: {
+        category,
+        message: `Ошибка: ${error.message}`,
+      },
+    });
+
     return (
       <div className="p-4 text-red-500 bg-red-50 rounded-lg">
         <p>Сервер временно недоступен</p>
@@ -132,38 +84,4 @@ export default async function CategoryPage({
       </div>
     );
   }
-
-  if (category !== "all" && cards.length === 0) {
-    return (
-      <p className="p-4 text-gray-500 italic">
-        Товары для данной категории не добавлены
-      </p>
-    );
-  }
-
-  if (cards.length === 0) {
-    return (
-      <p className="p-4 text-gray-500 italic">
-        {category === "all"
-          ? "Товары не найдены"
-          : "Товары для данной категории еще не добавлены"}
-      </p>
-    );
-  }
-  logger.info({
-    event: "page_catalog",
-    info: {
-      url: `${STRAPI_API}/categories?name=${category}`,
-      message: `[CategoryPage] Товары: ${JSON.stringify(cards)}`,
-    },
-  });
-  return cards.map((card, index) => (
-    <ProductCard
-      key={index}
-      id={card.id}
-      title={card.title}
-      price={card.price}
-      image={card.image ? card.image.url : "/placeholder.png"}
-    />
-  ));
 }
