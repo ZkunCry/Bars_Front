@@ -1,9 +1,15 @@
 import { Container } from "@/src/components/ui";
 import { BlockContactForm, PricingTable } from "@/src/components/features";
 import { logger } from "@/src/lib/logger";
+import { Metadata } from "next";
 import { StrapiService } from "@/src/services/StrapiService";
-
+import Head from "next/head";
+import { jsonld } from "@/src/schemas/services";
 export const revalidate = 60;
+export const metadata: Metadata = {
+  title: "Услуги по установке и монтажу оконных изделий | Барс - Сургут",
+  description: "Профессиональные услуги по установке и монтажу оконных изделий",
+};
 export default async function Page() {
   let services = null;
 
@@ -30,6 +36,10 @@ export default async function Page() {
   const hasServices = Array.isArray(services) && services.length > 0;
   return (
     <section className="flex flex-col mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }}
+      />
       <Container>
         <div className="flex flex-col mb-[0.75rem]">
           <h1

@@ -1,8 +1,21 @@
 import { Container } from "@/src/components/ui";
+
+import { Metadata } from "next";
 import { BlockContactForm, Sidebar } from "@/src/components/features";
+import { jsonld } from "@/src/schemas/catalog";
+export const metadata: Metadata = {
+  title: "Каталог окон, дверей и балконов | Барс - Сургут",
+  description:
+    "Каталог оконных конструкций, дверей, балконов, жалюзи и других изделий для вашего дома и бизнеса",
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <section className="mt-[1.564rem] md:min-h-[795px] min-h-dvh pt-[97px] ">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld) }}
+      />
       <Container>
         <div className="flex flex-col mb-[0.75rem]">
           <h1

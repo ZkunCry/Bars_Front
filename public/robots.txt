@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bars-surgut.ru
+
+# Sitemaps
+Sitemap: https://bars-surgut.ru/sitemap.xml

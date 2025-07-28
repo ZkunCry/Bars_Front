@@ -30,7 +30,9 @@ export const HeaderMenu = ({
     <>
       <div className="flex justify-between items-center text-white gap-4 py-[0.75rem]">
         <div className={`logo text-xl font-bold ${logoColor}`}>
-          <Image src={logo} alt="Барс лого" />
+          <Link href={"/"}>
+            <Image src={logo} alt="Барс лого" />
+          </Link>
         </div>
 
         <button

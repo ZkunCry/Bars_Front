@@ -5,7 +5,12 @@ import { LinkBtn, ContactForm, Calculator } from "@/src/components/features";
 import Window from "@/public/window.png";
 import WindowRotate from "@/public/window-rotate.png";
 import Man from "@/public/man.png";
-
+import { Metadata } from "next";
+import { jsonLd } from "@/src/schemas/main";
+export const metadata: Metadata = {
+  title: "Главная | Барс - Сургут",
+  description: "Окна Барс — Пластиковые окна и остекление в Сургуте",
+};
 export default function Home() {
   console.log(
     "SERVER ENV:",
@@ -17,6 +22,10 @@ export default function Home() {
   );
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd }}
+      />
       <section className="flex flex-col md:min-h-[795px] min-h-dvh bg-[url('/bg.png')] bg-cover bg-center relative pt-[97px] ">
         <SemanticHeader />
         <div className="absolute inset-0 bg-black/60 " />
@@ -54,6 +63,7 @@ export default function Home() {
                   <Image
                     src={Window}
                     alt="Окно"
+                    loading="lazy"
                     className="max-h-96 object-contain"
                   />
                 </div>
@@ -142,6 +152,7 @@ export default function Home() {
                   alt="Окно перевернутое"
                   width={544}
                   height={400}
+                  loading="lazy"
                   className="absolute bottom-[-120px] left-0 w-full h-full object-contain rotate-[-20deg]"
                 />
               </div>
@@ -250,7 +261,7 @@ export default function Home() {
                 className="w-12 h-12 text-gray-400 mb-4"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 viewBox="0 0 24 24"
               >
                 <path d="M17 8a5 5 0 11-10 0 5 5 0 0110 0z" />

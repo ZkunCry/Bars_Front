@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SemanticFooter } from "@/src/components/semantic";
-
+import { jsonLd } from "@/src/schemas/main";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     "Окна ПВХ Сургут",
     "Барс Сургут",
   ],
+
   openGraph: {
     title: "Окна Барс — Пластиковые окна в Сургуте",
     description:
@@ -33,6 +35,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+
+  alternates: {
+    canonical: "https://bars-surgut.ru",
+  },
 };
 
 export default function RootLayout({
@@ -41,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={`${inter.variable} antialiased relative`}>
         <div className="flex  flex-col wrapper min-h-dvh overflow-hidden">
           {children}
