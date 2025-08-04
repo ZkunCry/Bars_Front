@@ -41,7 +41,6 @@ export const Calculator = () => {
         <CustomSelect
           options={[
             { value: "pvc", label: "ПВХ (пластик)" },
-            { value: "wood", label: "Дерево" },
             { value: "aluminum", label: "Алюминий" },
           ]}
           value={form.material}
@@ -72,9 +71,9 @@ export const Calculator = () => {
         </label>
         <CustomSelect
           options={[
-            { value: "standard", label: "Стандартная" },
-            { value: "warm", label: "Тёплая (5 камер)" },
-            { value: "reinforced", label: "Усиленная" },
+            { value: "58mm", label: "58 мм (3 камеры)" },
+            { value: "70mm", label: "70 мм (5 камер)" },
+            { value: "80mm", label: "80 мм (6 камер)" },
           ]}
           value={form.frameType}
           placeholder={"Выберите вид рамы"}
@@ -88,10 +87,13 @@ export const Calculator = () => {
         </label>
         <CustomSelect
           options={[
-            { value: "single-glass", label: "Одинарное стекло" },
-            { value: "double-glass", label: "Двухкамерный стеклопакет" },
-            { value: "energy-saving", label: "Энергосберегающее" },
-            { value: "triplex", label: "Триплекс" },
+            { value: "single", label: "Одинарное стекло (4 мм)" },
+            { value: "one-chamber", label: "Однокамерное (2 стекла)" },
+            { value: "two-chamber", label: "Двухкамерное (3 стекла)" },
+            {
+              value: "energy-saving",
+              label: "Энергосберегающее (напыление на 3-е стекло)",
+            },
           ]}
           value={form.glassType}
           placeholder={"Выберите вид стекла"}

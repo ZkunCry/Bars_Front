@@ -6,6 +6,9 @@
   --foreground-secondary: #272727;
   --background-calc: #ececee;
 }
+html {
+  scroll-behavior: smooth;
+}
 .burger-btn {
   /* display: none; */
   position: relative;

@@ -7,6 +7,7 @@ import WindowRotate from "@/public/window-rotate.png";
 import Man from "@/public/man.png";
 import { Metadata } from "next";
 import { jsonLd } from "@/src/schemas/main";
+import Link from "next/link";
 export const metadata: Metadata = {
   title: "Главная | Барс - Сургут",
   description: "Окна Барс — Пластиковые окна и остекление в Сургуте",
@@ -44,12 +45,12 @@ export default function Home() {
             <p className="mt-4 text-[clamp(1rem,1.5vw+0.5rem,1.5rem)] text-gray-200">
               Установка качественных оконных конструкций
               <br />
-              из ПВХ и амалиера
+              из ПВХ и алюминия
             </p>
           </Container>
         </div>
       </section>
-      <section className="md:py-[5rem] py-[3rem]">
+      <section id="calculator" className="md:py-[5rem] py-[3rem]">
         <Container>
           <div className="flex justify-center items-center  ">
             <div className="flex flex-col gap-[2rem] bg-calculator w-full max-w-[1162px] p-[2rem] rounded-[1rem]">
@@ -83,42 +84,60 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-[1.06rem]">
               <div className="flex flex-col md:flex-row gap-[1.06rem]">
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/windows"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Окна
-                  </span>
+                  </Link>
                 </div>
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/blinds"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Жалюзи
-                  </span>
+                  </Link>
                 </div>
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/partitions"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Перегородки
-                  </span>
+                  </Link>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row gap-[1.06rem]">
+              <div className="relative flex flex-col md:flex-row gap-[1.06rem]">
                 <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                  <Link
+                    href={"/catalog/doors"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Двери
-                  </span>
+                  </Link>
                 </div>
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <span className="self-end text-[1.5rem] leading-[2rem]">
                     Рольставни
                   </span>
                 </div>
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/balconies"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Балконы
-                  </span>
+                  </Link>
                 </div>
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/portals"}
+                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Порталы
-                  </span>
+                  </Link>
                 </div>
               </div>
             </div>

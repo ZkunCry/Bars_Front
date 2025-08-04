@@ -18,6 +18,6 @@ export const links: MenuLinks = [
   {
     id: 4,
     title: "Калькулятор",
-    link: "/calculator",
+    link: "/#calculator",
   },
 ];
