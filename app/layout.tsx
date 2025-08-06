@@ -56,8 +56,6 @@ export default function RootLayout({
           name="author"
           content="https://github.com/ZkunCry, https://github.com/Tosking"
         />
-        <link rel="me" href="https://github.com/ZkunCry" />
-        <link rel="me" href="https://github.com/Tosking" />
       </head>
       <body className={`${inter.variable} antialiased relative`}>
         <div className="flex  flex-col wrapper min-h-dvh overflow-hidden">

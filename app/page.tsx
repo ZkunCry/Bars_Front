@@ -2,12 +2,14 @@ import Image from "next/image";
 import { SemanticHeader } from "@/src/components/semantic";
 import { Container } from "@/src/components/ui";
 import { LinkBtn, ContactForm, Calculator } from "@/src/components/features";
-import Window from "@/public/window.png";
-import WindowRotate from "@/public/window-rotate.png";
-import Man from "@/public/man.png";
 import { Metadata } from "next";
 import { jsonLd } from "@/src/schemas/main";
 import Link from "next/link";
+
+import Window from "@/public/window.png";
+import WindowRotate from "@/public/window-rotate.png";
+import Man from "@/public/man.png";
+
 export const metadata: Metadata = {
   title: "Главная | Барс - Сургут",
   description: "Окна Барс — Пластиковые окна и остекление в Сургуте",
@@ -84,57 +86,60 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-[1.06rem]">
               <div className="flex flex-col md:flex-row gap-[1.06rem]">
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative bg-[url('/windows.png')]  flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/windows"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Окна
                   </Link>
                 </div>
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative bg-[url('/blinds.png')] flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/blinds"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Жалюзи
                   </Link>
                 </div>
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative bg-[url('/partitions.png')] flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/partitions"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Перегородки
                   </Link>
                 </div>
               </div>
               <div className="relative flex flex-col md:flex-row gap-[1.06rem]">
-                <div className="flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="flex bg-[url('/doors.png')]  flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/doors"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Двери
                   </Link>
                 </div>
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
-                  <span className="self-end text-[1.5rem] leading-[2rem]">
+                <div className="relative bg-[url('/shutters.png')]  flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                  <Link
+                    href={"/catalog/shutters"}
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                  >
                     Рольставни
-                  </span>
+                  </Link>
                 </div>
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative bg-[url('/balconies.png')] flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/balconies"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Балконы
                   </Link>
                 </div>
-                <div className="relative flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
+                <div className="relative bg-[url('/portals.png')] flex flex-1 md:min-h-[176px] min-h-[120px] bg-[#ECECEE] bottom rounded-[8px] p-[1rem] pb-[2rem] ">
                   <Link
                     href={"/catalog/portals"}
-                    className="flex items-end absolute  bottom-[0] pb-[2rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
+                    className="flex items-end absolute  bottom-[0] pb-[1rem] w-full h-full self-end text-[1.5rem] leading-[2rem]"
                   >
                     Порталы
                   </Link>

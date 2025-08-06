@@ -4,7 +4,7 @@ import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 
 export const MapFooter = () => {
   return (
-    <div className="w-full rounded-lg">
+    <div className=" max-w-[897px] w-full rounded-lg">
       <YMaps>
         <Map
           height="400px"

@@ -80,7 +80,7 @@ export const HeaderMenu = ({
 
         {/* Телефон внутри меню на мобильных */}
         <Link
-          className="text-white text-[1rem] border border-white px-6 py-3 rounded-lg mt-4"
+          className="text-white text-[1rem] leading-[100%] border border-white px-6 py-3 rounded-lg mt-4"
           href="tel:+73462241444"
         >
           +7 (3462) 24‒14‒44
