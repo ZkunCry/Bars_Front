@@ -33,8 +33,8 @@ export const CustomSelect = ({
         onClick={() => setOpen(!isOpen)}
         className={`
           flex justify-between items-center
-          py-[5px] px-3 
-          border border-[#828282] rounded
+          py-[9px] px-3 
+          border border-[#CACACA] rounded
            cursor-pointer
           ${value ? "text-gray-800" : "text-gray-500"}
         `}
@@ -76,10 +76,10 @@ export const CustomSelect = ({
               key={option.value}
               onClick={() => handleSelect(option)}
               className={cn(
-                "px-3 py-2 cursor-pointer transition-colors duration-150",
+                "px-3 py-2 cursor-pointer transition-colors duration-150 ",
                 value === option.value
                   ? "bg-blue-50 text-blue-700"
-                  : "bg-white text-gray-700 hover:bg-gray-50"
+                  : "bg-white text-gray-700 hover:bg-[#EBEEF5] hover:text-[#1E59D9]"
               )}
             >
               {option.label}

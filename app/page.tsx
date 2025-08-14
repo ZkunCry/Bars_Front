@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { SemanticHeader } from "@/src/components/semantic";
 import { Container } from "@/src/components/ui";
-import { LinkBtn, ContactForm, Calculator } from "@/src/components/features";
+import {
+  LinkBtn,
+  ContactForm,
+  Calculator,
+  CalculatorBlock,
+} from "@/src/components/features";
 import { Metadata } from "next";
 import { jsonLd } from "@/src/schemas/main";
 import Link from "next/link";
@@ -61,16 +66,8 @@ export default function Home() {
                   Рассчитайте стоимость здесь и сейчас
                 </h2>
               </div>
-              <div className="flex justify-between gap-5  ">
-                <div className="md:flex flex-1 bg-white rounded-1  items-center justify-center p-8 hidden">
-                  <Image
-                    src={Window}
-                    alt="Окно"
-                    loading="lazy"
-                    className="max-h-96 object-contain"
-                  />
-                </div>
-                <Calculator />
+              <div className="flex gap-5  ">
+                <CalculatorBlock />
               </div>
             </div>
           </div>

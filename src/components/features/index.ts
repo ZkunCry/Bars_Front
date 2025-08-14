@@ -11,3 +11,6 @@ export { HeaderMenu } from "./HeaderMenu";
 export { Calculator } from "./Calculator";
 export { MapFooter } from "./MapFooter";
 export { BlockContactForm } from "./BlockContactForm";
+export { CalculatorBlock } from "./CalculatorBlock";
+export { ShapeBlocks } from "./ShapedBlocks";
+export { ShapeBlock } from "./ShapeBlock";
