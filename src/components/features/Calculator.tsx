@@ -1,34 +1,51 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CustomSelect } from "./CustomSelect";
-
+import { CalculatorContext } from "@/src/context/CalculatorContext";
+const PROFILE_PRICES: Record<string, number> = {
+  "58mm": 7746.69,
+  "70mm": 10242.58,
+  "80mm": 12500.0,
+};
+const defaultForm = {
+  windowType: "",
+  material: "",
+  plasticType: "",
+  frameType: "",
+  glassType: "",
+  width: "",
+  height: "",
+  mosquitoNet: false,
+};
+const multipliers = {
+  windowType: {
+    double: 1.2,
+    triple: 1.4,
+    balcony: 1.6,
+  },
+  material: {
+    aluminum: 1.3,
+  },
+  glassType: {
+    "one-chamber": 1.1,
+    "two-chamber": 1.2,
+    "energy-saving": 1.25,
+  },
+};
 export const Calculator = () => {
-  const [form, setForm] = useState({
-    windowType: "",
-    material: "",
-    plasticType: "",
-    frameType: "",
-    glassType: "",
-    width: "",
-    height: "",
-    mosquitoNet: false,
-  });
-
+  const { price: priceForWindow } = useContext(CalculatorContext);
+  const [form, setForm] = useState(defaultForm);
   const [price, setPrice] = useState<number | null>(null);
-
+  useEffect(() => {
+    calculatePrice(form);
+  }, [priceForWindow]);
   const handleChange = (key: keyof typeof form, value: string | boolean) => {
     const newForm = { ...form, [key]: value };
     setForm(newForm);
     calculatePrice(newForm);
   };
 
-  // Цены за м² для разных профилей
-  const PROFILE_PRICES: Record<string, number> = {
-    "58mm": 7746.69,
-    "70mm": 10242.58,
-    "80mm": 12500.0,
-  };
-  const calculatePrice = (form) => {
+  const calculatePrice = (form: typeof defaultForm) => {
     const { width, height, frameType } = form;
 
     if (!width || !height || !frameType) {
@@ -51,22 +68,22 @@ export const Calculator = () => {
       }
 
       const area = widthNum * heightNum;
-
       const basePrice = area * PROFILE_PRICES[frameType];
 
       let finalPrice = basePrice;
 
-      if (form.windowType === "double") finalPrice *= 1.2;
-      else if (form.windowType === "triple") finalPrice *= 1.4;
-      else if (form.windowType === "balcony") finalPrice *= 1.6;
+      // Применяем коэффициенты
+      finalPrice *= multipliers.windowType[form.windowType] || 1;
+      finalPrice *= multipliers.material[form.material] || 1;
+      finalPrice *= multipliers.glassType[form.glassType] || 1;
 
-      if (form.material === "aluminum") finalPrice *= 1.3;
+      // Применяем доп. наценки
+      if (form.mosquitoNet) {
+        finalPrice += addons.mosquitoNet;
+      }
 
-      if (form.glassType === "one-chamber") finalPrice *= 1.1;
-      else if (form.glassType === "two-chamber") finalPrice *= 1.2;
-      else if (form.glassType === "energy-saving") finalPrice *= 1.25;
-
-      if (form.mosquitoNet) finalPrice += 3000;
+      // Цена за доп. выбранное окно из контекста
+      finalPrice += priceForWindow;
 
       setPrice(Math.round(finalPrice));
     } catch (e) {
@@ -139,7 +156,6 @@ export const Calculator = () => {
           />
         </div>
 
-        {/* Вид рамы (профиль) */}
         <div className="flex flex-col gap-2">
           <label className="block text-sm font-medium text-gray-700">
             Профиль
@@ -156,7 +172,6 @@ export const Calculator = () => {
           />
         </div>
 
-        {/* Вид пластика */}
         <div className="flex flex-col gap-2">
           <label className="block text-sm font-medium text-gray-700">
             Вид пластика
@@ -173,7 +188,6 @@ export const Calculator = () => {
           />
         </div>
 
-        {/* Вид стекла */}
         <div className="flex flex-col gap-2">
           <label className="block text-sm font-medium text-gray-700">
             Вид стекла
@@ -194,7 +208,6 @@ export const Calculator = () => {
           />
         </div>
 
-        {/* Москитная сетка */}
         <div className="flex items-center gap-3 p-3  rounded-lg mt-2">
           <input
             type="checkbox"
