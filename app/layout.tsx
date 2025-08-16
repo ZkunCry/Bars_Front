@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SemanticFooter } from "@/src/components/semantic";
-import { jsonLd } from "@/src/schemas/main";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],

@@ -25,7 +25,7 @@ export const CustomSelect = ({
     <div
       ref={ref}
       className={cn(
-        "relative w-full min-w-[200px] font-sans text-[1.13rem]",
+        "relative w-full min-w-[200px] font-sans text-[1rem]",
         className
       )}
     >

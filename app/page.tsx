@@ -60,7 +60,7 @@ export default function Home() {
       <section id="calculator" className="md:py-[5rem] py-[3rem]">
         <Container>
           <div className="flex justify-center items-center  ">
-            <div className="flex flex-col gap-[2rem] bg-calculator w-full max-w-[1162px] p-[2rem] rounded-[1rem]">
+            <div className="flex flex-col gap-[2rem] bg-calculator w-full max-w-[1200px] p-[2rem] rounded-[1rem]">
               <div className="top">
                 <h2 className="text-[clamp(1.5rem,2vw+0.75rem,2.25rem)] font-bold leading-[clamp(1.5rem,4vw+1rem,4.5rem)] ">
                   Рассчитайте стоимость здесь и сейчас

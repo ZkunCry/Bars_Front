@@ -3,7 +3,6 @@ import { BlockContactForm, PricingTable } from "@/src/components/features";
 import { logger } from "@/src/lib/logger";
 import { Metadata } from "next";
 import { StrapiService } from "@/src/services/StrapiService";
-import Head from "next/head";
 import { jsonld } from "@/src/schemas/services";
 export const revalidate = 60;
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default async function Page() {
       },
     });
   } catch (error) {
-    // Обработка ошибок
     console.error("Services page error:", error);
     logger.error({
       event: "page_services_error",

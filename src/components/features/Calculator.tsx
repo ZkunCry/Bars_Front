@@ -92,7 +92,7 @@ export const Calculator = () => {
   };
 
   return (
-    <div className="w-full md:max-w-[422px]  flex flex-col gap-6 ">
+    <div className="w-full md:max-w-[422px]  flex flex-col gap-2 ">
       <div className="space-y-5">
         <div className="flex flex-col gap-2">
           <label className="block text-sm font-medium text-gray-700">
@@ -222,7 +222,7 @@ export const Calculator = () => {
         </div>
       </div>
 
-      <div className="mt-6 p-5 ">
+      <div className="mt-1  ">
         <div className="flex items-center  gap-3">
           <span className="text-[36px] font-medium text-gray-700">Цена</span>
           <div className="text-[1.1rem] text-left font-bold">
