@@ -6,6 +6,7 @@ import {
   ContactForm,
   Calculator,
   CalculatorBlock,
+  Reviews,
 } from "@/src/components/features";
 import { Metadata } from "next";
 import { jsonLd } from "@/src/schemas/main";
@@ -277,26 +278,7 @@ export default function Home() {
                 Отзывы клиентов
               </h2>
             </div>
-            <div className="flex flex-col items-center justify-center p-10">
-              <svg
-                className="w-12 h-12 text-gray-400 mb-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
-              >
-                <path d="M17 8a5 5 0 11-10 0 5 5 0 0110 0z" />
-                <path d="M2 21a9 9 0 0118 0H2z" />
-              </svg>
-              <p className="text-gray-600 text-center text-lg mb-2">
-                Пока нет ни одного отзыва
-              </p>
-              {/* <p className="text-gray-400 text-sm text-center mb-2">
-                Будьте первым, кто поделится мнением!
-              </p>
-
-              <CustomButton>Оставить отзыв</CustomButton> */}
-            </div>
+            <Reviews />
           </div>
         </Container>
       </section>

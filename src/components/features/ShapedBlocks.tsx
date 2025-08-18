@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import Window1 from "@/src/assets/1window.png";
 import Window2 from "@/src/assets/2window.png";
 import Window3 from "@/src/assets/3window.png";
+import Window4 from "@/src/assets/4window.png";
+
 import Image, { StaticImageData } from "next/image";
 import { CalculatorContext } from "@/src/context/CalculatorContext";
 
@@ -17,7 +19,7 @@ const shapedBlocks: ShapeBlockType[] = [
   { count: 1, img: Window1, price: 1100 },
   { count: 2, img: Window2, price: 2200 },
   { count: 3, img: Window3, price: 3300 },
-  { count: 4, img: Window3, price: 4400 },
+  { count: 4, img: Window4, price: 4400 },
 ];
 
 export const ShapeBlocks = () => {

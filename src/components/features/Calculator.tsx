@@ -79,10 +79,9 @@ export const Calculator = () => {
 
       // Применяем доп. наценки
       if (form.mosquitoNet) {
-        finalPrice += addons.mosquitoNet;
+        finalPrice += 3000;
       }
 
-      // Цена за доп. выбранное окно из контекста
       finalPrice += priceForWindow;
 
       setPrice(Math.round(finalPrice));
@@ -225,7 +224,7 @@ export const Calculator = () => {
       <div className="mt-1  ">
         <div className="flex items-center  gap-3">
           <span className="text-[36px] font-medium text-gray-700">Цена</span>
-          <div className="text-[1.1rem] text-left font-bold">
+          <div className="text-[1.5rem] text-left font-bold">
             {price !== null ? (
               <span>≈ {price.toLocaleString("ru-RU")} ₽</span>
             ) : (

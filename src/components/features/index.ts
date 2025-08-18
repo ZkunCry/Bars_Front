@@ -14,3 +14,4 @@ export { BlockContactForm } from "./BlockContactForm";
 export { CalculatorBlock } from "./CalculatorBlock";
 export { ShapeBlocks } from "./ShapedBlocks";
 export { ShapeBlock } from "./ShapeBlock";
+export { Reviews } from "./Reviews";
