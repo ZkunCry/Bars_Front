@@ -26,7 +26,23 @@ export const SemanticFooter = () => {
                 <Image src={Telegram} alt="telegram" />
                 <Image src={Vk} alt="vkontakte" />
               </div>
-              <Link href={"tel:+73462241444"}>+7 (3462) 24-14-44</Link>
+              <Link href={"tel:+73462241444"}> +7 (3462) 24-33-33</Link>
+              <Link
+                href={
+                  "https://yandex.ru/maps/org/bars/1446683898/?ll=73.400159%2C61.248953&z=17.83"
+                }
+                target="_blank"
+              >
+                Мы на яндекс картах
+              </Link>
+              <Link
+                href={
+                  "https://2gis.ru/surgut/firm/5489290326837014?m=73.399677%2C61.24882%2F16"
+                }
+                target="_blank"
+              >
+                Мы в 2гис
+              </Link>
             </div>
             <MapFooter />
           </div>

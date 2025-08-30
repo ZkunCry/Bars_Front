@@ -71,15 +71,12 @@ export const Calculator = () => {
       const basePrice = area * PROFILE_PRICES[frameType];
 
       let finalPrice = basePrice;
-
-      // Применяем коэффициенты
       finalPrice *= multipliers.windowType[form.windowType] || 1;
       finalPrice *= multipliers.material[form.material] || 1;
       finalPrice *= multipliers.glassType[form.glassType] || 1;
 
-      // Применяем доп. наценки
       if (form.mosquitoNet) {
-        finalPrice += 3000;
+        finalPrice += 2000;
       }
 
       finalPrice += priceForWindow;
@@ -216,7 +213,7 @@ export const Calculator = () => {
             onChange={(e) => handleChange("mosquitoNet", e.target.checked)}
           />
           <label htmlFor="mosquito" className="text-gray-700 cursor-text">
-            Добавить москитную сетку (+3000 руб)
+            Добавить москитную сетку (+2000 руб)
           </label>
         </div>
       </div>

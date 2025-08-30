@@ -86,7 +86,6 @@ const ReviewCard = ({ review }) => {
 
   return (
     <div className="min-w-[300px] max-w-[320px] rounded-xl overflow-hidden shadow-lg bg-white flex-shrink-0 hover:shadow-xl transition">
-      {/* Photo Carousel */}
       <div className="relative h-40 w-full overflow-hidden">
         {review.images.map((image, index) => {
           const isCurrent = index === currentImageIndex;
@@ -106,7 +105,7 @@ const ReviewCard = ({ review }) => {
               key={index}
               className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ease-in-out ${
                 isCurrent
-                  ? "translate-x-0 opacity-100 z-10"
+                  ? "translate-x-0 opacity-100 z-[5]"
                   : isPrev && animationDirection === "left"
                   ? "translate-x-full opacity-0 z-0"
                   : isPrev && animationDirection === "right"
@@ -133,14 +132,14 @@ const ReviewCard = ({ review }) => {
           <>
             <button
               onClick={handlePrevImage}
-              className="cursor-pointer  absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70 transition z-20"
+              className="cursor-pointer  absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70 transition z-[6]"
               aria-label="Предыдущее фото"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={handleNextImage}
-              className="cursor-pointer  absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70 transition z-20"
+              className="cursor-pointer  absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70 transition z-[6]"
               aria-label="Следующее фото"
             >
               <ChevronRight size={20} />

@@ -64,7 +64,7 @@ export const HeaderMenu = ({
             className="text-[0.8rem] md:text-[0.9rem] lg:text-[1rem] text-center"
             href={"tel:+73462241444"}
           >
-            +7 (3462) 24‒14‒44
+            +7 (3462) 24-33-33
           </Link>
         </div>
       </div>
@@ -77,13 +77,11 @@ export const HeaderMenu = ({
         <Nav className="w-full flex flex-col items-center gap-6">
           <MenuLinks closeMenu={() => setIsOpen(false)} />
         </Nav>
-
-        {/* Телефон внутри меню на мобильных */}
         <Link
           className="text-white text-[1rem] leading-[100%] border border-white px-6 py-3 rounded-lg mt-4"
           href="tel:+73462241444"
         >
-          +7 (3462) 24‒14‒44
+          +7 (3462) 24-33-33
         </Link>
       </div>
       <div
