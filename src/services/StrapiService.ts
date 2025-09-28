@@ -4,8 +4,8 @@ import { fetchWithTimeout } from "../lib/utils";
 export const StrapiService = {
   async getPrices() {
     try {
-      const resProfiles = await fetch(`${STRAPI_API}/services`);
-      const resMultipliers = await fetch(`${STRAPI_API}/multipliers`);
+      const resProfiles = await fetch(`https://api.bars-surgut.ru/profiles`);
+      const resMultipliers = await fetch(`https://api.bars-surgut.ru/multipliers`);
 
       if (!resProfiles.ok || !resMultipliers.ok) {
         throw new Error(`Strapi API error: ${resProfiles.status} ${resProfiles.statusText}`);
@@ -19,7 +19,7 @@ export const StrapiService = {
   },
   async getServices() {
     try {
-      const res = await fetch(`${STRAPI_API}/services`, {
+      const res = await fetch(`https://api.bars-surgut.ru/services`, {
         next: {
           tags: ["services"],
         },
@@ -37,7 +37,7 @@ export const StrapiService = {
   },
   async getAllCards() {
     try {
-      const res = await fetchWithTimeout(`${STRAPI_API}/cards`);
+      const res = await fetchWithTimeout(`https://api.bars-surgut.ru/cards`);
 
       if (!res.ok) {
         throw new Error(`Ошибка при запросе товаров: статус ${res.status}`);
@@ -58,7 +58,7 @@ export const StrapiService = {
   async getCategoryByName(name: string) {
     try {
       const res = await fetchWithTimeout(
-        `${STRAPI_API}/categories?name=${name}`
+        `https://api.bars-surgut.ru/categories?name=${name}`
       );
 
       if (!res.ok) {
