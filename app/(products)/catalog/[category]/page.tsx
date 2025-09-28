@@ -1,6 +1,5 @@
 // src/app/catalog/[category]/page.tsx
 import { ProductCard } from "@/src/components/features";
-import { logger } from "@/src/lib/logger";
 import { StrapiService } from "@/src/services/StrapiService";
 
 export const revalidate = 60;
@@ -14,13 +13,13 @@ export default async function CategoryPage({
   const { category } = params;
 
   try {
-    logger.info({
-      event: "page_catalog",
-      info: {
-        category,
-        message: `[CategoryPage] Запрос страницы категории`,
-      },
-    });
+    // logger.info({
+    //   event: "page_catalog",
+    //   info: {
+    //     category,
+    //     message: `[CategoryPage] Запрос страницы категории`,
+    //   },
+    // });
 
     let cards = [];
 
@@ -46,14 +45,14 @@ export default async function CategoryPage({
       );
     }
 
-    logger.info({
-      event: "page_catalog_success",
-      info: {
-        category,
-        cards_count: cards.length,
-        message: `Успешно получены товары`,
-      },
-    });
+    // logger.info({
+    //   event: "page_catalog_success",
+    //   info: {
+    //     category,
+    //     cards_count: cards.length,
+    //     message: `Успешно получены товары`,
+    //   },
+    // });
 
     return cards.map((card) => (
       <ProductCard
@@ -67,13 +66,13 @@ export default async function CategoryPage({
   } catch (error) {
     console.error("CategoryPage error:", error);
 
-    logger.error({
-      event: "page_catalog_error",
-      info: {
-        category,
-        message: `Ошибка: ${error.message}`,
-      },
-    });
+    // logger.error({
+    //   event: "page_catalog_error",
+    //   info: {
+    //     category,
+    //     message: `Ошибка: ${error.message}`,
+    //   },
+    // });
 
     return (
       <div className="p-4 text-red-500 bg-red-50 rounded-lg">

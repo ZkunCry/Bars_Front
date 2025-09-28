@@ -54,12 +54,7 @@ export const Calculator = () => {
 
   } catch (error) {
     console.error("Services page error:", error);
-    // logger.error({
-    //   event: "page_services_error",
-    //   info: {
-    //     message: `Ошибка при получении услуг: ${error.message}`,
-    //   },
-    // });
+    
   }
 
 

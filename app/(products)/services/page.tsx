@@ -1,6 +1,6 @@
 import { Container } from "@/src/components/ui";
 import { BlockContactForm, PricingTable } from "@/src/components/features";
-import { logger } from "@/src/lib/logger";
+// import { logger } from "@/src/lib/logger";
 import { Metadata } from "next";
 import { StrapiService } from "@/src/services/StrapiService";
 import { jsonld } from "@/src/schemas/services";
@@ -14,21 +14,21 @@ export default async function Page() {
 
   try {
     services = await StrapiService.getServices();
-    logger.info({
-      event: "page_services_success",
-      info: {
-        count: services?.length || 0,
-        message: "Услуги успешно получены из Strapi",
-      },
-    });
+    // logger.info({
+    //   event: "page_services_success",
+    //   info: {
+    //     count: services?.length || 0,
+    //     message: "Услуги успешно получены из Strapi",
+    //   },
+    // });
   } catch (error) {
     console.error("Services page error:", error);
-    logger.error({
-      event: "page_services_error",
-      info: {
-        message: `Ошибка при получении услуг: ${error.message}`,
-      },
-    });
+    // logger.error({
+    //   event: "page_services_error",
+    //   info: {
+    //     message: `Ошибка при получении услуг: ${error.message}`,
+    //   },
+    // });
   }
 
   const hasServices = Array.isArray(services) && services.length > 0;

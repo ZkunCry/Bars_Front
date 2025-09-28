@@ -1,6 +1,6 @@
 import { STRAPI_API } from "@/src/constants/api";
 import { fetchWithTimeout } from "../lib/utils";
-import { logger } from "../lib/logger";
+// import { logger } from "../lib/logger";
 export const StrapiService = {
   async getPrices() {
     try {
@@ -45,13 +45,13 @@ export const StrapiService = {
 
       return await res.json();
     } catch (error) {
-      logger.error({
-        event: "catalog_service_error",
-        info: {
-          endpoint: "getAllCards",
-          message: error.message,
-        },
-      });
+      // logger.error({
+      //   event: "catalog_service_error",
+      //   info: {
+      //     endpoint: "getAllCards",
+      //     message: error.message,
+      //   },
+      // });
       throw error;
     }
   },
@@ -68,14 +68,14 @@ export const StrapiService = {
       const categories = await res.json();
       return categories.length > 0 ? categories[0] : null;
     } catch (error) {
-      logger.error({
-        event: "catalog_service_error",
-        info: {
-          endpoint: "getCategoryByName",
-          name,
-          message: error.message,
-        },
-      });
+      // logger.error({
+      //   event: "catalog_service_error",
+      //   info: {
+      //     endpoint: "getCategoryByName",
+      //     name,
+      //     message: error.message,
+      //   },
+      // });
       throw error;
     }
   },
