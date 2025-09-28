@@ -5,7 +5,7 @@ export const StrapiService = {
   async getPrices() {
     try {
       const resProfiles = await fetch(`${STRAPI_API}/services`);
-      const resMultipliers = await fetch(`${STRAPI_API}/services`);
+      const resMultipliers = await fetch(`${STRAPI_API}/multipliers`);
 
       if (!resProfiles.ok || !resMultipliers.ok) {
         throw new Error(`Strapi API error: ${resProfiles.status} ${resProfiles.statusText}`);
