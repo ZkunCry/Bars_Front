@@ -2,6 +2,21 @@ import { STRAPI_API } from "@/src/constants/api";
 import { fetchWithTimeout } from "../lib/utils";
 import { logger } from "../lib/logger";
 export const StrapiService = {
+  async getPrices() {
+    try {
+      const resProfiles = await fetch(`${STRAPI_API}/services`);
+      const resMultipliers = await fetch(`${STRAPI_API}/services`);
+
+      if (!resProfiles.ok || !resMultipliers.ok) {
+        throw new Error(`Strapi API error: ${resProfiles.status} ${resProfiles.statusText}`);
+      }
+
+      return {profiles: await resProfiles.json(), multipliers: await resMultipliers.json()};
+    } catch (error) {
+      console.error("StrapiService.getPrices failed:", error);
+      throw error;
+    }
+  },
   async getServices() {
     try {
       const res = await fetch(`${STRAPI_API}/services`, {

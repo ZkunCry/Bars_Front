@@ -1,8 +1,10 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { CustomSelect } from "./CustomSelect";
+import { StrapiService } from "@/src/services/StrapiService";
 import { CalculatorContext } from "@/src/context/CalculatorContext";
-const PROFILE_PRICES: Record<string, number> = {
+import { logger } from "@/src/lib/logger";
+let PROFILE_PRICES: Record<string, number> = {
   "58mm": 7746.69,
   "70mm": 10242.58,
   "80mm": 12500.0,
@@ -17,7 +19,7 @@ const defaultForm = {
   height: "",
   mosquitoNet: false,
 };
-const multipliers = {
+let multipliers = {
   windowType: {
     double: 1.2,
     triple: 1.4,
@@ -33,6 +35,34 @@ const multipliers = {
   },
 };
 export const Calculator = () => {
+  try{
+    StrapiService.getPrices().then(res => {
+      PROFILE_PRICES["58mm"] = res.profiles.profile_58mm
+      PROFILE_PRICES["70mm"] = res.profiles.profile_70mm
+      PROFILE_PRICES["80mm"] = res.profiles.profile_80mm
+
+      multipliers.windowType.double = res.multipliers.windowType_double
+      multipliers.windowType.triple = res.multipliers.windowType_triple
+      multipliers.windowType.balcony = res.multipliers.windowType_balcony
+
+      multipliers.material.aluminum = res.multipliers.material_aluminum
+
+      multipliers.glassType["one-chamber"] = res.multipliers.glassType_onechamber
+      multipliers.glassType["two-chamber"] = res.multipliers.glassType_twochamber
+      multipliers.glassType["energy-saving"] = res.multipliers.glassType_energysaving
+    });
+
+  } catch (error) {
+    console.error("Services page error:", error);
+    logger.error({
+      event: "page_services_error",
+      info: {
+        message: `Ошибка при получении услуг: ${error.message}`,
+      },
+    });
+  }
+
+
   const { price: priceForWindow } = useContext(CalculatorContext);
   const [form, setForm] = useState(defaultForm);
   const [price, setPrice] = useState<number | null>(null);
