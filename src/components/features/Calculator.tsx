@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CustomSelect } from "./CustomSelect";
 import { StrapiService } from "@/src/services/StrapiService";
 import { CalculatorContext } from "@/src/context/CalculatorContext";
-import { logger } from "@/src/lib/logger";
+// import { logger } from "@/src/lib/logger";
 let PROFILE_PRICES: Record<string, number> = {
   "58mm": 7746.69,
   "70mm": 10242.58,
@@ -54,12 +54,12 @@ export const Calculator = () => {
 
   } catch (error) {
     console.error("Services page error:", error);
-    logger.error({
-      event: "page_services_error",
-      info: {
-        message: `Ошибка при получении услуг: ${error.message}`,
-      },
-    });
+    // logger.error({
+    //   event: "page_services_error",
+    //   info: {
+    //     message: `Ошибка при получении услуг: ${error.message}`,
+    //   },
+    // });
   }
 
 
