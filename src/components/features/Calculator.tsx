@@ -37,6 +37,7 @@ let multipliers = {
 export const Calculator = () => {
   try{
     StrapiService.getPrices().then(res => {
+      console.log(res)
       PROFILE_PRICES["58mm"] = res.profiles.profile_58mm
       PROFILE_PRICES["70mm"] = res.profiles.profile_70mm
       PROFILE_PRICES["80mm"] = res.profiles.profile_80mm
